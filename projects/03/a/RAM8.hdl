@@ -35,5 +35,5 @@ CHIP RAM8 {
     Register(in=in, load=reg7, out=reg7Out); // registrador 7: reg7
     Mux8Way16(a=reg0Out, b=reg1Out, c=reg2Out, d=reg3Out, e=reg4Out, f=reg5Out, g=reg6Out, h=reg7Out, sel=address, out=out);
     // o sel do Mux8Way16 recebe o mesmo valor do sel do DMux8Way, pois é o endereço
-    // do regristrador que nos enteressa em dado momento
+    // git do regristrador que nos enteressa em dado momento
 }
