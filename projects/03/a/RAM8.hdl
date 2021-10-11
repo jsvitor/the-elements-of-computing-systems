@@ -15,6 +15,25 @@ CHIP RAM8 {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
-    
+    // Put your code here: jose vitor
+    // O seletor(sel) seleciona um dos registradores de a-h (reg0 a reg7)
+    // passando o load(0 ou 1) para o registrador que for selecionado. 
+    // exemplo: sel=0	0	1   --> reg4 = load
+    DMux8Way(in=load, sel=address, a=reg0, b=reg1, c=reg2, d=reg3, e=reg4, f=reg5, g=reg6, h=reg7);
+    // conectar a entrada a todos os registradores, mas apenas um irá armazenar ou
+    // imprimir o seu estado. Isto dependerá do anddres, que implementamos usando o demux
+    // o load, neste caso é o endereço do registrador. Onde esses "endereços" estão
+    // conectados às saídas do DMux8Way
+    // ou seja, o in só passa para o registrador se ele
+    Register(in=in, load=reg0, out=reg0Out); // reg0: is the address of registrador 0
+    Register(in=in, load=reg1, out=reg1Out); // registrador 1: reg1
+    Register(in=in, load=reg2, out=reg2Out); // registrador 2: reg2
+    Register(in=in, load=reg3, out=reg3Out); // registrador 3: reg3
+    Register(in=in, load=reg4, out=reg4Out); // registrador 4: reg4
+    Register(in=in, load=reg5, out=reg5Out); // registrador 5: reg5
+    Register(in=in, load=reg6, out=reg6Out); // registrador 6: reg6
+    Register(in=in, load=reg7, out=reg7Out); // registrador 7: reg7
+    Mux8Way16(a=reg0Out, b=reg1Out, c=reg2Out, d=reg3Out, e=reg4Out, f=reg5Out, g=reg6Out, h=reg7Out, sel=address, out=out);
+    // o sel do Mux8Way16 recebe o mesmo valor do sel do DMux8Way, pois é o endereço
+    // do regristrador que nos enteressa em dado momento
 }
