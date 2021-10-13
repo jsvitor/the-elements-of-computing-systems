@@ -30,9 +30,9 @@ The Elements of Computer Systems is a discipline that is part of the Information
   - [x] 16-bit register
   - [x] RAM8
   - [x] RAM64
-  - [ ] RAM4K
-  - [ ] RAM16K
-  - [ ] RAM512
+  - [x] RAM4K
+  - [x] RAM16K
+  - [x] RAM512
   - [x] PC
   
   #### Another memories
