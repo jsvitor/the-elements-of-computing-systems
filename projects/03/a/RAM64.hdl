@@ -15,5 +15,18 @@ CHIP RAM64 {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    // Put your code here: José Vitor
+    // no in, conecto o load. Pois essa será a informação que irá dizer
+    // a RAM8 selecionada pelo address se é pra carregar uma nova informação ou
+    // ler o que já está carregado
+    DMux8Way(in=load, sel=address[0..2], a=ram8a, b=ram8b, c=ram8c, d=ram8d, e=ram8e, f=ram8f, g=ram8g, h=ram8h);
+    RAM8(in=in, load=ram8a, address=address[3..5], out=ram8aOut);
+    RAM8(in=in, load=ram8b, address=address[3..5], out=ram8bOut);
+    RAM8(in=in, load=ram8c, address=address[3..5], out=ram8cOut);
+    RAM8(in=in, load=ram8d, address=address[3..5], out=ram8dOut);
+    RAM8(in=in, load=ram8e, address=address[3..5], out=ram8eOut);
+    RAM8(in=in, load=ram8f, address=address[3..5], out=ram8fOut);
+    RAM8(in=in, load=ram8g, address=address[3..5], out=ram8gOut);
+    RAM8(in=in, load=ram8h, address=address[3..5], out=ram8hOut);
+    Mux8Way16(a=ram8aOut, b=ram8bOut, c=ram8cOut, d=ram8dOut, e=ram8eOut, f=ram8fOut, g=ram8gOut, h=ram8hOut, sel=address[0..2], out=out);
 }
