@@ -15,5 +15,15 @@ CHIP RAM512 {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    // Put your code here: jsvitor
+    DMux8Way(in=load, sel=address[0..2], a=ram64a, b=ram64b, c=ram64c, d=ram64d, e=ram64e, f=ram64f, g=ram64g, h=ram64h);
+    RAM64(in=in, load=ram64a, address=address[3..8], out=ram64aOut);
+    RAM64(in=in, load=ram64b, address=address[3..8], out=ram64bOut);
+    RAM64(in=in, load=ram64c, address=address[3..8], out=ram64cOut);
+    RAM64(in=in, load=ram64d, address=address[3..8], out=ram64dOut);
+    RAM64(in=in, load=ram64e, address=address[3..8], out=ram64eOut);
+    RAM64(in=in, load=ram64f, address=address[3..8], out=ram64fOut);
+    RAM64(in=in, load=ram64g, address=address[3..8], out=ram64gOut);
+    RAM64(in=in, load=ram64h, address=address[3..8], out=ram64hOut);
+    Mux8Way16(a=ram64aOut, b=ram64bOut, c=ram64cOut, d=ram64dOut, e=ram64eOut, f=ram64fOut, g=ram64gOut, h=ram64hOut, sel=address[0..2], out=out);
 }
