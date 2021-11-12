@@ -46,7 +46,11 @@ The Elements of Computer Systems is a discipline that is part of the Information
 
 </details>
 
-### Module 4: Computer Architecture Roadmap
+### Module 4: Machine Language
+
+
+
+### Module 5: Computer Architecture Roadmap
 
 <details>
   <summary>See more</summary>
