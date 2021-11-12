@@ -45,3 +45,22 @@ The Elements of Computer Systems is a discipline that is part of the Information
   <!-- - Katex - $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$ -->
 
 </details>
+
+### Module 4: Computer Architecture Roadmap
+
+<details>
+  <summary>See more</summary>
+  
+* Unit 5.1: Von Neumann Architecture
+
+* Unit 5.2: The Fetch-Execute Cycle
+
+* Unit 5.3: Central Processing Unit
+
+* Unit 5.4: The Hack Computer
+
+* Unit 5.5: Project 5 Overview
+
+* Unit 5.6: Perspectives
+  
+</details>
