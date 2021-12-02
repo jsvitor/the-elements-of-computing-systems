@@ -39,5 +39,52 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // Put your code here:
+    // Put your code here: jose vitor
+    
+    // são 3 entradas e quatro saídas
+    // se a instrução for do tipo A, o bit mais significativo é 0 e o resto é o endereço do ARegister
+    // por outro lado, se o bit mais significativo da instrução for 1, a instrução é do tipo C
+    // o que significa que é uma instrução de computação, exemplo:
+    // in → 111 a cccccc ddd jjj → para ver mais detalhes, olhar a tabela de instruções hack
+
+    // ARegister
+
+    // escolher entre o a instrução A ou a saída da ALU com base no bit
+    // mais significativo da instrução
+    Mux16(a=instruction, b=OutAlu, sel=instruction[15], out=inARegister);
+    // se o bit mais significativo for 0, será umas instrução de endereço (ARegister),
+    // se for 1, será uma instrução de computação
+
+
+    // DRegister
+    Not(in=instruction[15], out=isAInstr);
+    Or(a=isAInstr, b=instruction[5], out=loadA);
+    ARegister(in=inA, load=loadA, out=outA, out[0..14]=addressM);
+    
+    
+    And(a=instruction[4], b=instruction[15], out=loadD);
+    DRegister(in=outAlu, load=loadD, out=outD);
+    // Mux16
+    Mux16(a=outA, b=inM, sel=instruction[12], out=aOrM);
+
+    // ALU
+    ALU(x=outD, y=aOrM, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6], zr=zr, ng=ng, out=outAlu, out=outM);
+
+    Not(in=zr, out=notzr);
+    Not(in=ng, out=notng);
+    And(a=notzr, b=notng, out=pos);
+
+    // verifica jump
+    And(a=instruction[2], b=ng, out=njump);
+    And(a=instruction[1], b=zr, out=zjump);
+    And(a=instruction[0], b=pos, out=posjump);
+
+    Or(a=njump, b=zjump, out=jump1);
+    Or(a=jump1, b=posjump, out=jump);
+
+    // PC
+    And(a=jump, b=instruction[15], out=loadpc);
+
+    PC(in=outA, load=loadpc, inc=true, reset=reset, out[0..14]=pc);
+    And(a=instruction[15], b=instruction[3], out=writeM);
 }
