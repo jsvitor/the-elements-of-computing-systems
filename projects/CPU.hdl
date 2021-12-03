@@ -51,7 +51,7 @@ CHIP CPU {
 
     // escolher entre o a instrução A ou a saída da ALU com base no bit
     // mais significativo da instrução
-    Mux16(a=instruction, b=outAlu, sel=instruction[15], out=inARegister);
+    Mux16(a=instruction, b=OutAlu, sel=instruction[15], out=inARegister);
     // se o bit mais significativo for 0, será umas instrução de endereço (ARegister),
     // se for 1, será uma instrução de computação
 
@@ -59,7 +59,7 @@ CHIP CPU {
     // DRegister
     Not(in=instruction[15], out=isAInstr);
     Or(a=isAInstr, b=instruction[5], out=loadA);
-    ARegister(in=inARegister, load=loadA, out=outA, out[0..14]=addressM);
+    ARegister(in=inA, load=loadA, out=outA, out[0..14]=addressM);
     
     
     And(a=instruction[4], b=instruction[15], out=loadD);
