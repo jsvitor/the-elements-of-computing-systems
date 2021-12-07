@@ -65,10 +65,13 @@ The Elements of Computer Systems is a discipline that is part of the Information
 
 * Unit 5.5: Project 5 Overview
   
-- [ ] CPU
-- [ ] Memory
-- [ ] Connect everything
+- [x] CPU
+- [x] Memory
+- [x] Connect everything
 
 * Unit 5.6: Perspectives
   
 </details>
+
+
+### Linguagens de alto nível
